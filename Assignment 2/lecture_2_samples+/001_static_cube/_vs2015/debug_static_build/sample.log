@@ -1,0 +1,5 @@
+﻿  main.cpp
+  ShaderUtil.cpp
+  Generating Code...
+glew32sd.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32sd.lib(glew.obj)' or at 'D:\SCHOOL\Year 2\Quartile 2\3D Rendering\Assignment 2\lecture_2_samples+\001_static_cube\_vs2015\debug_static_exe\glew_static.pdb'; linking object as if no debug info
+  sample.vcxproj -> D:\SCHOOL\Year 2\Quartile 2\3D Rendering\Assignment 2\lecture_2_samples+\001_static_cube\_vs2015\debug_static_exe/sample.exe

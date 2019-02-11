@@ -1,0 +1,3 @@
+﻿  main.cpp
+glew32sd.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32sd.lib(glew.obj)' or at 'D:\SCHOOL\Year 2\Quartile 2\3D RENDERING\Assignment 1\lecture_1_samples+\004_programmable_pipeline_triangle_example_buffered\_vs2015\debug_static_exe\glew_static.pdb'; linking object as if no debug info
+  sample.vcxproj -> D:\SCHOOL\Year 2\Quartile 2\3D RENDERING\Assignment 1\lecture_1_samples+\004_programmable_pipeline_triangle_example_buffered\_vs2015\debug_static_exe/sample.exe
