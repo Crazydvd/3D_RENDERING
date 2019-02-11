@@ -1,15 +1,15 @@
-﻿  ShaderUtil.cpp
-  main.cpp
-d:\school\year 2\quartile 2\3d rendering\assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\src\main.cpp(144): warning C4244: 'argument': conversion from 'T' to 'GLfloat', possible loss of data
+﻿  main.cpp
+d:\school\year 2\quartile 2\3d_rendering\assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\src\main.cpp(144): warning C4244: 'argument': conversion from 'T' to 'GLfloat', possible loss of data
           with
           [
               T=unsigned int
           ]
-d:\school\year 2\quartile 2\3d rendering\assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\src\main.cpp(144): warning C4244: 'argument': conversion from 'T' to 'GLfloat', possible loss of data
+d:\school\year 2\quartile 2\3d_rendering\assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\src\main.cpp(144): warning C4244: 'argument': conversion from 'T' to 'GLfloat', possible loss of data
           with
           [
               T=int
           ]
+  ShaderUtil.cpp
   Generating Code...
-glew32sd.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32sd.lib(glew.obj)' or at 'D:\SCHOOL\Year 2\Quartile 2\3D RENDERING\Assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\_vs2015\debug_static_exe\glew_static.pdb'; linking object as if no debug info
-  sample.vcxproj -> D:\SCHOOL\Year 2\Quartile 2\3D RENDERING\Assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\_vs2015\debug_static_exe/sample.exe
+glew32sd.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32sd.lib(glew.obj)' or at 'D:\SCHOOL\Year 2\Quartile 2\3D_RENDERING\Assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\_vs2015\debug_static_exe\glew_static.pdb'; linking object as if no debug info
+  sample.vcxproj -> D:\SCHOOL\Year 2\Quartile 2\3D_RENDERING\Assignment 1\lecture_1_samples+\006_programmable_pipeline_triangle_example_external_shaders\_vs2015\debug_static_exe/sample.exe
