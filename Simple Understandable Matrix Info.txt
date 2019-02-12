@@ -1,0 +1,25 @@
+Transform: mirror the matrix with the diagonal.
+
+Determinant 2x2/3x3: write the matrix twice, next to eachother and multiply entries along the diagonals
+and back-diagonals, adding the diagonal terms and subtracting the backdiagonal terms.
+
+
+Cofactor: play bomberman with a specific row&column then take determinant of remaining matrix (minor)
+It's either positive or negative, given by a checkerboard pattern.
+
+
+Determinant NxN: pick a row OR column, multiply every element in the row/column with their cofactor,
+then add all the results together.
+
+
+Extra info: the determinant in 2D is the signed area of the figure where the basic vectors are the sides;
+the determinant in 3D is the volume of the figure where the basic vectors are the edges.
+
+
+Classical adjoint (adj M): Compute the cofactor of every value in the matrix.
+Make a new matrix with all the results.
+Transform this new matrix.
+
+
+Inverse Matrix: divide Classical adjoint by the determinant (	adj M / |M|	).
+(divide every value in the matrix by the determinant).
