@@ -1,5 +1,6 @@
 Transform: Mirror the matrix with the diagonal.
 
+
 Determinant 2x2/3x3: Write the matrix twice, next to eachother and multiply entries along the diagonals
 and back-diagonals, adding the diagonal terms and subtracting the backdiagonal terms.
 
