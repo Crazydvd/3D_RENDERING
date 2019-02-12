@@ -1,0 +1,167 @@
+# depslib dependency file v1.0
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484051551 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1484051511 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\include\abstractcollider.h
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484051551 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\002_basic_approach_2\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484057430 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1484057606 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\include\abstractcollider.h
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484058045 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484053513 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\003_polymorphism_approach_faulty\main.cpp
+	<iostream>
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+
+1484053513 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\main.cpp
+	<iostream>
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+
+1484057606 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\include\abstractcollider.h
+
+1484057430 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1484058045 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484057444 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484049521 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484057581 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\005_polymorphism_overloading_approach\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484057444 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484142479 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1484142479 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\include\abstractcollider.h
+
+1484049521 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484142479 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484057581 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_polymorphism_overloading_approach_start\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484057444 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484142479 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1484142479 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\include\abstractcollider.h
+
+1484049521 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484142479 g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484057581 source:g:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\101_sheets\lecture_5_samples+\001_multiple_colliders\010_double_dispatching_step_by_step\001_compilation_fails\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484057444 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484142480 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1516780880 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\abstractcollider.h
+
+1484049522 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484142480 d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484057582 source:d:\data\dropbox\saxion\courses\kwartaal_2\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
+1484057444 source:d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\aabbcollider.cpp
+	"AABBCollider.h"
+	<iostream>
+
+1484142480 d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\aabbcollider.h
+	<AbstractCollider.h>
+
+1548334645 d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\abstractcollider.h
+
+1484049522 source:d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\abstractcollider.cpp
+	"AbstractCollider.h"
+	"AABBCollider.h"
+	"SphereCollider.h"
+	<iostream>
+
+1484142480 d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\include\spherecollider.h
+	<AbstractCollider.h>
+
+1484057582 source:d:\data\dropbox\hw\saxion\courses_ge\2_2_c++_3d\007_sheets\lecture_5_samples+\001_double_dispatching_step_by_step\001_compilation_fails\src\spherecollider.cpp
+	"SphereCollider.h"
+	<iostream>
+
