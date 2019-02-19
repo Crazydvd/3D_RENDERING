@@ -1,4 +1,4 @@
-Transform: Mirror the matrix with the diagonal.
+Transpose: Mirror the matrix with the diagonal.
 
 
 Determinant 2x2/3x3: Write the matrix twice, next to eachother and multiply values along the diagonals
@@ -19,7 +19,7 @@ the determinant in 3D is the volume of the figure where the basic vectors are th
 
 Classical adjoint (adj M): Compute the cofactor of every value in the matrix.
 Make a new matrix with all the results.
-Transform this new matrix.
+Transpose this new matrix.
 
 
 Inverse Matrix: Divide Classical adjoint by the determinant (	adj M / |M|	).

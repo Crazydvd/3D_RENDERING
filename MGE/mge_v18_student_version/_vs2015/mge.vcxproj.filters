@@ -23,6 +23,9 @@
     <Filter Include="MGE Source files\assignment_2">
       <UniqueIdentifier>{c7413e50-3c7d-4d4e-b430-93ee7b3f463a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MGE Source files\assignment_3">
+      <UniqueIdentifier>{9f2dc4f7-37fb-430b-857b-78d01556c72f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\glm.hpp">
@@ -82,11 +85,20 @@
     <ClInclude Include="..\src\mge\core\Light.hpp">
       <Filter>MGE Source files\mge\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\3d_rendering_asign_2\assignment.hpp">
-      <Filter>MGE Source files\assignment_2</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\3d_rendering_asign_2\config.hpp">
       <Filter>MGE Source files\assignment_2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3d_rendering_asign_3\config.hpp">
+      <Filter>MGE Source files\assignment_3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mge\materials\LitMaterial.hpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3d_rendering_asign_2\assignment2.hpp">
+      <Filter>MGE Source files\assignment_2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3d_rendering_asign_3\assignment3.hpp">
+      <Filter>MGE Source files\assignment_3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -144,8 +156,14 @@
     <ClCompile Include="..\src\mge\core\Light.cpp">
       <Filter>MGE Source files\mge\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\3d_rendering_asign_2\assignment.cpp">
+    <ClCompile Include="..\src\mge\materials\LitMaterial.cpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3d_rendering_asign_2\assignment2.cpp">
       <Filter>MGE Source files\assignment_2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3d_rendering_asign_3\assignment3.cpp">
+      <Filter>MGE Source files\assignment_3</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

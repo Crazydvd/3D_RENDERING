@@ -166,8 +166,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\3d_rendering_asign_2\assignment.hpp" />
+    <ClInclude Include="..\src\3d_rendering_asign_2\assignment2.hpp" />
     <ClInclude Include="..\src\3d_rendering_asign_2\config.hpp" />
+    <ClInclude Include="..\src\3d_rendering_asign_3\assignment3.hpp" />
+    <ClInclude Include="..\src\3d_rendering_asign_3\config.hpp" />
     <ClInclude Include="..\src\glm.hpp" />
     <ClInclude Include="..\src\mge\behaviours\AbstractBehaviour.hpp" />
     <ClInclude Include="..\src\mge\behaviours\KeysBehaviour.hpp" />
@@ -184,12 +186,14 @@
     <ClInclude Include="..\src\mge\core\World.hpp" />
     <ClInclude Include="..\src\mge\materials\AbstractMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\ColorMaterial.hpp" />
+    <ClInclude Include="..\src\mge\materials\LitMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\TextureMaterial.hpp" />
     <ClInclude Include="..\src\mge\MGEDemo.hpp" />
     <ClInclude Include="..\src\mge\util\DebugHud.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\3d_rendering_asign_2\assignment.cpp" />
+    <ClCompile Include="..\src\3d_rendering_asign_2\assignment2.cpp" />
+    <ClCompile Include="..\src\3d_rendering_asign_3\assignment3.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\mge\behaviours\AbstractBehaviour.cpp" />
     <ClCompile Include="..\src\mge\behaviours\KeysBehaviour.cpp" />
@@ -205,6 +209,7 @@
     <ClCompile Include="..\src\mge\core\World.cpp" />
     <ClCompile Include="..\src\mge\materials\AbstractMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\ColorMaterial.cpp" />
+    <ClCompile Include="..\src\mge\materials\LitMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\TextureMaterial.cpp" />
     <ClCompile Include="..\src\mge\MGEDemo.cpp" />
     <ClCompile Include="..\src\mge\util\DebugHud.cpp" />
