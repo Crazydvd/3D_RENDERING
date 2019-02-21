@@ -5,6 +5,7 @@
 class GameObject;
 class Mesh;
 class World;
+class Light;
 
 /**
  * AbstractMaterial should be subclassed for all materials, for example ColorMaterial, TextureMaterial.
@@ -22,6 +23,9 @@ class AbstractMaterial
     public:
         AbstractMaterial();
         virtual ~AbstractMaterial();
+
+		static Light* pLight;
+
 
         /**
          * Render the given mesh in the given world using the given mvp matrices. Implement in subclass.

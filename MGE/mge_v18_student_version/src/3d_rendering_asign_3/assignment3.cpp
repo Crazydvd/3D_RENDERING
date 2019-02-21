@@ -104,13 +104,12 @@ void Assignment3::_initializeScene()
 	//Note how the texture material is able to detect the number of lights in the scene
 	//even though it doesn't implement any lighting yet!
 
-	Light* light = new Light("light", glm::vec3(0, 4, 0));
+	Light* light = new Light("light", glm::vec3(0, 4, 0), LightType::SPOT);
 	light->scale(glm::vec3(0.1f, 0.1f, 0.1f));
 	light->setMesh(cubeMeshF);
 	light->setMaterial(lightMaterial);
 	light->setBehaviour(new KeysBehaviour(25));
 	_world->add(light);
-
 }
 
 void Assignment3::_render()
