@@ -30,6 +30,7 @@ public:
 	glm::vec3 GetColour() { return GetColor(); }; //same as GetColor()
 	glm::vec3 GetAmbientColor(); //returns GetColor() * _ambientContribution
 	glm::vec3 GetAmbientColour() { GetAmbientColor(); }; //same as GetAmbientColor()
+	glm::vec3 GetPosition();
 
 	void SetLightType(LightType pType);
 	void SetLightIntensity(float pIntensity);

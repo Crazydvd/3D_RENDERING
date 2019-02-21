@@ -51,8 +51,9 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 	//set the material color
 	glUniform3fv(_shader->getUniformLocation("diffuseColor"), 1, glm::value_ptr(_diffuseColor));
 	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(LitMaterial::Light->GetAmbientColor()));
-	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->getWorldPosition()));
+	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->GetPosition()));
 	glUniform3fv(_shader->getUniformLocation("lightColor"), 1, glm::value_ptr(LitMaterial::Light->GetColor()));
+	glUniform1i(_shader->getUniformLocation("lightType"), LitMaterial::Light->GetType());
 
 	//pass in all MVP matrices separately
 	glUniformMatrix4fv(_shader->getUniformLocation("projectionMatrix"), 1, GL_FALSE, glm::value_ptr(pProjectionMatrix));

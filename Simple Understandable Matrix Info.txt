@@ -6,7 +6,7 @@ and back-diagonals, adding the diagonal terms and subtracting the backdiagonal t
 
 
 Cofactor: Play bomberman with a specific row&column then take determinant of remaining matrix (minor)
-It's either positive or negative, given by a checkerboard pattern.
+It's either positive or negative, given by a checkerboard pattern (+ in the top left).
 
 
 Determinant 4x4 (also NxN): Pick a row OR column, multiply every element in the row/column with their cofactor,

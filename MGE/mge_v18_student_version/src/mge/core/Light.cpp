@@ -25,6 +25,16 @@ glm::vec3 Light::GetAmbientColor()
 	return GetColor() * _ambientContribution;
 }
 
+glm::vec3 Light::GetPosition()
+{
+	if (_type != LightType::DIRECTIONAL)
+	{
+		return getWorldPosition();
+	}
+
+	return getWorldTransform()[2];
+}
+
 void Light::SetLightType(LightType pType)
 {
 	_type = pType;
