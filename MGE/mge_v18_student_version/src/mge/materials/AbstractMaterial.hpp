@@ -24,9 +24,6 @@ class AbstractMaterial
         AbstractMaterial();
         virtual ~AbstractMaterial();
 
-		static Light* pLight;
-
-
         /**
          * Render the given mesh in the given world using the given mvp matrices. Implement in subclass.
          */

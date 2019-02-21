@@ -3,6 +3,7 @@
 
 #include "GL/glew.h"
 #include "mge/materials/AbstractMaterial.hpp"
+#include "mge/core/Light.hpp"
 
 class ShaderProgram;
 
@@ -22,8 +23,10 @@ class LitMaterial : public AbstractMaterial
         void setDiffuseColor (glm::vec3 pDiffuseColor);
 		void setAmbientColor (glm::vec3 pAmbientColor);
 
+		static Light* Light;
+
     private:
-        //all the static properties are shared between instances of ColorMaterial
+        //all the static properties are shared between instances of LitMaterial
         //note that they are all PRIVATE, we do not expose this static info to the outside world
         static ShaderProgram* _shader;
         static void _lazyInitializeShader();
@@ -31,6 +34,13 @@ class LitMaterial : public AbstractMaterial
         //this one is unique per instance of color material
         glm::vec3 _diffuseColor;
 		glm::vec3 _ambientColor;
+
+		//ambient light color be set to plight.getambientcolor //DONE
+		//diffuse color stays unchanged //Was already done
+		//get a light position //DONE
+		//get a light type (later)
+		//get a light color //DONE
+		//set lightVector to the fragPosition - LightPosition //DONE
 };
 
 #endif // LITMATERIAL_HPP

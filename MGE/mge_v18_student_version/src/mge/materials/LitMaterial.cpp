@@ -8,6 +8,7 @@
 #include "3d_rendering_asign_3/config.hpp"
 
 ShaderProgram* LitMaterial::_shader = NULL;
+Light* LitMaterial::Light = NULL;
 
 LitMaterial::LitMaterial(glm::vec3 pAmbientColor, glm::vec3 pDiffuseColor) :_diffuseColor(pDiffuseColor), _ambientColor(pAmbientColor)
 {
@@ -49,7 +50,9 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 
 	//set the material color
 	glUniform3fv(_shader->getUniformLocation("diffuseColor"), 1, glm::value_ptr(_diffuseColor));
-	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(_ambientColor));
+	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(LitMaterial::Light->GetAmbientColor()));
+	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->getWorldPosition()));
+	glUniform3fv(_shader->getUniformLocation("lightColor"), 1, glm::value_ptr(LitMaterial::Light->GetColor()));
 
 	//pass in all MVP matrices separately
 	glUniformMatrix4fv(_shader->getUniformLocation("projectionMatrix"), 1, GL_FALSE, glm::value_ptr(pProjectionMatrix));
