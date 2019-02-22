@@ -58,17 +58,21 @@ void main( void )
 	float attenuation = (c1 + c2 * distance + c3 * squareDistance);
 	diffuseIntensity /= attenuation;
 	
-	/**/	
-	vec3 reflectedRay = reflect(LightVector, normalize(worldNormal));
+	/**/
 	mat4 cameramatrix = inverse(viewMatrix);
 	vec3 cameraPosition = vec3(cameramatrix[3]);
 	vec3 cameraVector = cameraPosition - position;
 	
-	float projection = dot(reflectedRay, cameraVector);
+	vec3 lightDirection = normalize(position - lightPosition);
+	vec3 reflectedRay = reflect(lightDirection, normalize(worldNormal));
+	
+	float projection = dot(reflectedRay, normalize(cameraVector));
 	float maximum = max(projection, 0);
 	
 	vec3 specularTerm = pow(maximum, shininess) * lightColor * specularColor;
+	//specularTerm /= attenuation;
 	/**/
+	
 	
 	vec3 ambientTerm = ambientLightColor * diffuseColor;
 	vec3 diffuseTerm = diffuseIntensity * lightColor * diffuseColor;

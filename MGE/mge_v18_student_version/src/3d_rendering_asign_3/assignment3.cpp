@@ -61,7 +61,7 @@ void Assignment3::_initializeScene()
 
 	//create some materials to display the cube, the plane and the light
 	AbstractMaterial* lightMaterial = new ColorMaterial(glm::vec3(1, 1, 0));
-	AbstractMaterial* litMaterial = new LitMaterial(glm::vec3(0, .5, 0), glm::vec3(1, 1, 1));
+	AbstractMaterial* litMaterial = new LitMaterial(glm::vec3(0, 0.5f, 0), glm::vec3(1, 1, 1));
 	AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "runicfloor.png"));
 	AbstractMaterial* brickMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "bricks.jpg"));
 	AbstractMaterial* landMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "land.jpg"));
@@ -107,14 +107,14 @@ void Assignment3::_initializeScene()
 	glm::vec3 color = glm::vec3(1, 1, 1);
 	lightMaterial = new ColorMaterial(color);
 
-	Light* light = new Light("light", glm::vec3(0, 4, 0), LightType::DIRECTIONAL);
+	Light* light = new Light("light", glm::vec3(0, 4, 0), LightType::POINT);
 	light->scale(glm::vec3(0.1f, 0.1f, 0.1f));
 	light->setMesh(cubeMeshF);
 	light->setMaterial(lightMaterial);
 	light->setBehaviour(new KeysBehaviour(25,90));
 	_world->add(light);
 
-	light->setAmbientContribution(0.2f);
+	light->setAmbientContribution(.5f);
 	light->SetLightIntensity(1);
 	light->SetLightColor(color);
 
