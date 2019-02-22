@@ -38,7 +38,7 @@ class LitMaterial : public AbstractMaterial
 		glm::vec3 _ambientColor;
 		glm::vec3 _specularColor;
 
-		int _shininess = 256;
+		int _shininess = 4;
 };
 
 #endif // LITMATERIAL_HPP

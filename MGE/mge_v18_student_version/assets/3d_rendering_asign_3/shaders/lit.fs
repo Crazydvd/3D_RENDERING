@@ -70,7 +70,7 @@ void main( void )
 	float maximum = max(projection, 0);
 	
 	vec3 specularTerm = pow(maximum, shininess) * lightColor * specularColor;
-	//specularTerm /= attenuation;
+	specularTerm /= attenuation;
 	/**/
 	
 	
