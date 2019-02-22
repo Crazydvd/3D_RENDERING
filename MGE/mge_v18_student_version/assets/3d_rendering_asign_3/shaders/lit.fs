@@ -2,19 +2,17 @@
 
 #version 330 // for glsl version (12 is for older versions , say opengl 2.1
 
+uniform mat4 viewMatrix;
+
 uniform vec3 ambientLightColor;
 uniform vec3 diffuseColor;
+uniform vec3 specularColor;
 
 uniform vec3 lightPosition;
 uniform vec3 lightColor;
 uniform int lightType;
 
-/**/
-uniform mat4 viewMatrix;
 uniform int shininess;
-uniform vec3 specularColor;
-
-/**/
 
 in float diffuseIntensity;
 in vec3 worldNormal;
@@ -22,7 +20,7 @@ in vec3 position;
 
 out vec4 fragment_color;
 
-void main( void ) 
+void main(void) 
 {
 	vec3 LightVector;
 	
@@ -58,12 +56,11 @@ void main( void )
 	float attenuation = (c1 + c2 * distance + c3 * squareDistance);
 	diffuseIntensity /= attenuation;
 	
-	/**/
 	mat4 cameramatrix = inverse(viewMatrix);
 	vec3 cameraPosition = vec3(cameramatrix[3]);
 	vec3 cameraVector = cameraPosition - position;
 	
-	vec3 lightDirection = normalize(position - lightPosition);
+	vec3 lightDirection = normalize(LightVector);
 	vec3 reflectedRay = reflect(lightDirection, normalize(worldNormal));
 	
 	float projection = dot(reflectedRay, normalize(cameraVector));
@@ -71,7 +68,6 @@ void main( void )
 	
 	vec3 specularTerm = pow(maximum, shininess) * lightColor * specularColor;
 	specularTerm /= attenuation;
-	/**/
 	
 	
 	vec3 ambientTerm = ambientLightColor * diffuseColor;

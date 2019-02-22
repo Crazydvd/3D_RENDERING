@@ -107,7 +107,7 @@ void Assignment3::_initializeScene()
 	glm::vec3 color = glm::vec3(1, 1, 1);
 	lightMaterial = new ColorMaterial(color);
 
-	Light* light = new Light("light", glm::vec3(0, 4, 0), LightType::POINT);
+	Light* light = new Light("light", glm::vec3(0, 1, 0), LightType::POINT);
 	light->scale(glm::vec3(0.1f, 0.1f, 0.1f));
 	light->setMesh(cubeMeshF);
 	light->setMaterial(lightMaterial);

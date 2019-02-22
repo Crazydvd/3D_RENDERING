@@ -13,7 +13,7 @@ uniform	mat4 	modelMatrix;
 out vec3 worldNormal;
 out vec3 position;
 
-void main( void )
+void main(void)
 {	
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertex, 1.f);
 	
