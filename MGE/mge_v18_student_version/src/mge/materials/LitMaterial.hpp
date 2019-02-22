@@ -22,6 +22,8 @@ class LitMaterial : public AbstractMaterial
         //in rgb values
         void setDiffuseColor (glm::vec3 pDiffuseColor);
 		void setAmbientColor (glm::vec3 pAmbientColor);
+		void setSpecularColor(glm::vec3 pSpecularColor);
+		void setShininess(int pShininess);
 
 		static Light* Light;
 
@@ -34,13 +36,9 @@ class LitMaterial : public AbstractMaterial
         //this one is unique per instance of color material
         glm::vec3 _diffuseColor;
 		glm::vec3 _ambientColor;
+		glm::vec3 _specularColor;
 
-		//ambient light color be set to plight.getambientcolor //DONE
-		//diffuse color stays unchanged //Was already done
-		//get a light position //DONE
-		//get a light type (later)
-		//get a light color //DONE
-		//set lightVector to the fragPosition - LightPosition //DONE
+		int _shininess = 64;
 };
 
 #endif // LITMATERIAL_HPP

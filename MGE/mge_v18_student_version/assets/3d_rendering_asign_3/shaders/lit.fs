@@ -5,10 +5,14 @@
 uniform vec3 ambientLightColor;
 uniform vec3 diffuseColor;
 
-/**/
 uniform vec3 lightPosition;
 uniform vec3 lightColor;
 uniform int lightType;
+
+/**/
+uniform mat4 viewMatrix;
+uniform int shininess;
+uniform vec3 specularColor;
 
 /**/
 
@@ -28,14 +32,17 @@ void main( void )
 		fragment_color = vec4(ambientTerm, 1);
 		return;
 	}
+	else
 	if (lightType == 1) //directional
 	{
 		LightVector = lightPosition;
 	}
+	else
 	if (lightType == 2) //point
 	{
 		LightVector = position - lightPosition;
 	}
+	else
 	if (lightType == 3) //spot
 	{
 		LightVector = position - lightPosition;
@@ -48,10 +55,23 @@ void main( void )
 	float c1 = 1;
 	float c2 = 1;
 	float c3 = 0;
-	diffuseIntensity /= (c1 + c2 * distance + c3 * squareDistance);
+	float attenuation = (c1 + c2 * distance + c3 * squareDistance);
+	diffuseIntensity /= attenuation;
+	
+	/**/	
+	vec3 reflectedRay = reflect(LightVector, normalize(worldNormal));
+	mat4 cameramatrix = inverse(viewMatrix);
+	vec3 cameraPosition = vec3(cameramatrix[3]);
+	vec3 cameraVector = cameraPosition - position;
+	
+	float projection = dot(reflectedRay, cameraVector);
+	float maximum = max(projection, 0);
+	
+	vec3 specularTerm = pow(maximum, shininess) * lightColor * specularColor;
+	/**/
 	
 	vec3 ambientTerm = ambientLightColor * diffuseColor;
 	vec3 diffuseTerm = diffuseIntensity * lightColor * diffuseColor;
 
-	fragment_color = vec4 (ambientTerm + diffuseTerm, 1);
+	fragment_color = vec4 (ambientTerm + diffuseTerm + specularTerm, 1);
 }

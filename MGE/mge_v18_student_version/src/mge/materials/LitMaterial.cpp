@@ -10,7 +10,7 @@
 ShaderProgram* LitMaterial::_shader = NULL;
 Light* LitMaterial::Light = NULL;
 
-LitMaterial::LitMaterial(glm::vec3 pAmbientColor, glm::vec3 pDiffuseColor) :_diffuseColor(pDiffuseColor), _ambientColor(pAmbientColor)
+LitMaterial::LitMaterial(glm::vec3 pDiffuseColor, glm::vec3 pSpecularColor) :_diffuseColor(pDiffuseColor), _specularColor(pSpecularColor)
 {
 	//every time we create an instance of colormaterial we check if the corresponding shader has already been loaded
 	_lazyInitializeShader();
@@ -43,6 +43,16 @@ void LitMaterial::setAmbientColor(glm::vec3 pAmbientColor)
 	_ambientColor = pAmbientColor;
 }
 
+void LitMaterial::setSpecularColor(glm::vec3 pSpecularColor)
+{
+	_specularColor = pSpecularColor;
+}
+
+void LitMaterial::setShininess(int pShininess)
+{
+	_shininess = pShininess;
+}
+
 
 void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix)
 {
@@ -50,6 +60,10 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 
 	//set the material color
 	glUniform3fv(_shader->getUniformLocation("diffuseColor"), 1, glm::value_ptr(_diffuseColor));
+	glUniform3fv(_shader->getUniformLocation("specularColor"), 1 ,glm::value_ptr(_specularColor));
+	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
+
+	//pass in the light properties
 	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(LitMaterial::Light->GetAmbientColor()));
 	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->GetPosition()));
 	glUniform3fv(_shader->getUniformLocation("lightColor"), 1, glm::value_ptr(LitMaterial::Light->GetColor()));
