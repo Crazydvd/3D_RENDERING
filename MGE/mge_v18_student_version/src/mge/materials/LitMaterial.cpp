@@ -66,8 +66,16 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 	//pass in the light properties
 	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(LitMaterial::Light->GetAmbientColor()));
 	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->GetPosition()));
+	glUniform3fv(_shader->getUniformLocation("lightForward"), 1, glm::value_ptr(LitMaterial::Light->GetForwardDirection()));
 	glUniform3fv(_shader->getUniformLocation("lightColor"), 1, glm::value_ptr(LitMaterial::Light->GetColor()));
 	glUniform1i(_shader->getUniformLocation("lightType"), LitMaterial::Light->GetType());
+
+	//spotLight properties
+	if (LitMaterial::Light->GetType() == LightType::SPOT)
+	{
+		glUniform1f(_shader->getUniformLocation("coneAngle"), LitMaterial::Light->GetConeAngle());
+		glUniform1f(_shader->getUniformLocation("fallOffAngle"), LitMaterial::Light->GetFallOffAngle());
+	}
 
 	//pass in all MVP matrices separately
 	glUniformMatrix4fv(_shader->getUniformLocation("projectionMatrix"), 1, GL_FALSE, glm::value_ptr(pProjectionMatrix));

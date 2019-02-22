@@ -27,12 +27,22 @@ glm::vec3 Light::GetAmbientColor()
 
 glm::vec3 Light::GetPosition()
 {
-	if (_type != LightType::DIRECTIONAL)
-	{
-		return getWorldPosition();
-	}
+	return getWorldPosition();
+}
 
+glm::vec3 Light::GetForwardDirection()
+{
 	return getWorldTransform()[2];
+}
+
+float Light::GetConeAngle()
+{
+	return _coneAngle;
+}
+
+float Light::GetFallOffAngle()
+{
+	return _fallOffAngle;
 }
 
 void Light::SetLightType(LightType pType)
@@ -53,6 +63,16 @@ void Light::SetLightColor(glm::vec3 pColor)
 void Light::setAmbientContribution(float pContribution)
 {
 	_ambientContribution = pContribution;
+}
+
+void Light::setConeAngle(float pAngle)
+{
+	_coneAngle = pAngle;
+}
+
+void Light::setFallOffAngle(float pAngle)
+{
+	_fallOffAngle = pAngle;
 }
 
 //Override setWorldRecursively to make sure we are registered
