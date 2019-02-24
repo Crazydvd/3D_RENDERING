@@ -40,7 +40,7 @@ void main(void)
 	else
 	if (lightType == 1) //directional
 	{
-		LightVector = lightForward;
+		LightVector = normalize(lightForward);
 	}
 	else
 	if (lightType == 2) //point

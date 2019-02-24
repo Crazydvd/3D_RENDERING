@@ -56,6 +56,8 @@ void Assignment3::_initializeScene()
 	Mesh* SuzannaS = Mesh::load(config::ASSIGNMENT3_MODEL_PATH + "suzanna_smooth.obj");
 	Mesh* TeapotS = Mesh::load(config::ASSIGNMENT3_MODEL_PATH + "teapot_smooth.obj");
 	Mesh* TeapotF = Mesh::load(config::ASSIGNMENT3_MODEL_PATH + "teapot_flat.obj");
+	Mesh* PliersUp = Mesh::load(config::ASSIGNMENT3_MODEL_PATH + "pliersUp.obj");
+	Mesh* PliersDown = Mesh::load(config::ASSIGNMENT3_MODEL_PATH + "pliersDown.obj");
 
 	//MATERIALS
 
@@ -89,15 +91,23 @@ void Assignment3::_initializeScene()
 	//sphere->setBehaviour (new RotatingBehaviour());
 	//_world->add(sphere);
 
-	//add a teapot
-	GameObject* teapot = new GameObject("teapot", glm::vec3(0, 1, 0));
-	teapot->scale(glm::vec3(2.5, 2.5, 2.5));
-	teapot->setMesh(TeapotS);
-	teapot->setMaterial(litMaterial);
-	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(75.0f), glm::vec3(0, 1, 0)));
-	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(-10.0f), glm::vec3(1, 0, 0)));
-	//teapot->setBehaviour (new RotatingBehaviour());
-	_world->add(teapot);
+	////add a teapot
+	//GameObject* teapot = new GameObject("teapot", glm::vec3(0, 1, 0));
+	//teapot->scale(glm::vec3(2.5, 2.5, 2.5));
+	//teapot->setMesh(TeapotS);
+	//teapot->setMaterial(litMaterial);
+	//teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(75.0f), glm::vec3(0, 1, 0)));
+	//teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(-10.0f), glm::vec3(1, 0, 0)));
+	////teapot->setBehaviour (new RotatingBehaviour());
+	//_world->add(teapot);
+
+	//add a testObj
+	GameObject* testObj = new GameObject("testObj", glm::vec3(0, 1, 0));
+	testObj->scale(glm::vec3(.5, .5, .5));
+	testObj->setMesh(PliersUp);
+	testObj->setMaterial(litMaterial);
+	//testObj->setBehaviour(new RotatingBehaviour());
+	_world->add(testObj);
 
 	//add a light. Note that the light does ABSOLUTELY ZIP! NADA ! NOTHING !
 	//It's here as a place holder to get you started.
@@ -107,16 +117,31 @@ void Assignment3::_initializeScene()
 	glm::vec3 color = glm::vec3(1, 1, 1);
 	lightMaterial = new ColorMaterial(color);
 
-	Light* light = new Light("light", glm::vec3(0, 1, 0), LightType::SPOT);
+	Light* light = new Light("light", glm::vec3(0, 1, 0), LightType::DIRECTIONAL);
+	light->translate(glm::vec3(-3, 0, 4));
 	light->scale(glm::vec3(0.1f, 0.1f, 0.1f));
+	light->rotate(glm::radians(135.0f), glm::vec3(0, 1, 0));
 	light->setMesh(cubeMeshF);
 	light->setMaterial(lightMaterial);
 	light->setBehaviour(new KeysBehaviour(25,90));
 	_world->add(light);
 
+	Light* light2 = new Light("light2", glm::vec3(0, 1, 0), LightType::SPOT);
+	light2->translate(glm::vec3(3, 0, 4));
+	light2->scale(glm::vec3(0.1f, 0.1f, 0.1f));
+	light2->rotate(glm::radians(-135.0f), glm::vec3(0, 1, 0));
+	light2->setMesh(cubeMeshF);
+	light2->setMaterial(lightMaterial);
+	//light2->setBehaviour(new KeysBehaviour(25, 90));
+	_world->add(light2);
+
 	light->setAmbientContribution(.5f);
 	light->SetLightIntensity(1);
 	light->SetLightColor(color);
+	
+	light2->setAmbientContribution(.5f);
+	light2->SetLightIntensity(1);
+	light2->SetLightColor(color);
 
 	LitMaterial::Light = light;
 }
