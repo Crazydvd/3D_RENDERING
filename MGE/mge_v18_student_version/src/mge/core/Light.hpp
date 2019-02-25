@@ -29,7 +29,7 @@ public:
 	glm::vec3 GetColor(); //returns color * intensity
 	glm::vec3 GetColour() { return GetColor(); }; //same as GetColor()
 	glm::vec3 GetAmbientColor(); //returns GetColor() * _ambientContribution
-	glm::vec3 GetAmbientColour() { GetAmbientColor(); }; //same as GetAmbientColor()
+	glm::vec3 GetAmbientColour() { return GetAmbientColor(); }; //same as GetAmbientColor()
 	glm::vec3 GetPosition();
 	glm::vec3 GetForwardDirection();
 	float GetConeAngle();

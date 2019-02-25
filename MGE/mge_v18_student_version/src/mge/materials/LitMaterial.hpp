@@ -4,6 +4,7 @@
 #include "GL/glew.h"
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/core/Light.hpp"
+#include <vector>
 
 class ShaderProgram;
 
@@ -25,7 +26,8 @@ class LitMaterial : public AbstractMaterial
 		void setSpecularColor(glm::vec3 pSpecularColor);
 		void setShininess(int pShininess);
 
-		static Light* Light;
+		static void AddLight(Light* pLight);
+		static void RemoveLight(Light* pLight);
 
     private:
         //all the static properties are shared between instances of LitMaterial
@@ -33,12 +35,19 @@ class LitMaterial : public AbstractMaterial
         static ShaderProgram* _shader;
         static void _lazyInitializeShader();
 
+		static std::vector<Light*> _lights;
+
+		//keep track of the amount of lights
+		static int _lightCount;
+
         //this one is unique per instance of color material
         glm::vec3 _diffuseColor;
 		glm::vec3 _ambientColor;
 		glm::vec3 _specularColor;
 
 		int _shininess = 4;
+
+		bool _overrideSpecularLight = false;
 };
 
 #endif // LITMATERIAL_HPP

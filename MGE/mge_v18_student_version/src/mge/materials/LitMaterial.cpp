@@ -8,7 +8,8 @@
 #include "3d_rendering_asign_3/config.hpp"
 
 ShaderProgram* LitMaterial::_shader = NULL;
-Light* LitMaterial::Light = NULL;
+int LitMaterial::_lightCount = 0;
+std::vector<Light*> LitMaterial::_lights = std::vector<Light*>();
 
 LitMaterial::LitMaterial(glm::vec3 pDiffuseColor, glm::vec3 pSpecularColor) :_diffuseColor(pDiffuseColor), _specularColor(pSpecularColor)
 {
@@ -19,7 +20,7 @@ LitMaterial::LitMaterial(glm::vec3 pDiffuseColor, glm::vec3 pSpecularColor) :_di
 void LitMaterial::_lazyInitializeShader()
 {
 	//this shader contains everything the material can do (it can render something in 3d using a single color)
-	if (!_shader) 
+	if (!_shader)
 	{
 		_shader = new ShaderProgram();
 		_shader->addShader(GL_VERTEX_SHADER, config::ASSIGNMENT3_SHADER_PATH + "lit.vs");
@@ -53,28 +54,61 @@ void LitMaterial::setShininess(int pShininess)
 	_shininess = pShininess;
 }
 
+void LitMaterial::AddLight(Light* pLight)
+{
+	LitMaterial::_lights.push_back(pLight);
+	LitMaterial::_lightCount++;
+}
+
+void LitMaterial::RemoveLight(Light* pLight)
+{
+	std::vector<Light*>::iterator itr;
+	std::vector<Light*>::iterator end = LitMaterial::_lights.end();
+
+	for (itr = LitMaterial::_lights.begin(); itr != end; itr++)
+	{
+		if (*itr == pLight)
+		{
+			LitMaterial::_lights.erase(itr);
+			break;
+		}
+	}
+}
+
 
 void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix)
 {
 	_shader->use();
-
 	//set the material color
 	glUniform3fv(_shader->getUniformLocation("diffuseColor"), 1, glm::value_ptr(_diffuseColor));
-	glUniform3fv(_shader->getUniformLocation("specularColor"), 1 ,glm::value_ptr(_specularColor));
 	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
+	glUniform1i(_shader->getUniformLocation("lightCount"), LitMaterial::_lightCount);
 
 	//pass in the light properties
-	glUniform3fv(_shader->getUniformLocation("ambientLightColor"), 1, glm::value_ptr(LitMaterial::Light->GetAmbientColor()));
-	glUniform3fv(_shader->getUniformLocation("lightPosition"), 1, glm::value_ptr(LitMaterial::Light->GetPosition()));
-	glUniform3fv(_shader->getUniformLocation("lightForward"), 1, glm::value_ptr(LitMaterial::Light->GetForwardDirection()));
-	glUniform3fv(_shader->getUniformLocation("lightColor"), 1, glm::value_ptr(LitMaterial::Light->GetColor()));
-	glUniform1i(_shader->getUniformLocation("lightType"), LitMaterial::Light->GetType());
-
-	//spotLight properties
-	if (LitMaterial::Light->GetType() == LightType::SPOT)
+	for (int i = 0; i < LitMaterial::_lights.size(); i++)
 	{
-		glUniform1f(_shader->getUniformLocation("coneAngle"), LitMaterial::Light->GetConeAngle());
-		glUniform1f(_shader->getUniformLocation("fallOffAngle"), LitMaterial::Light->GetFallOffAngle());
+		//TODO: in case you really do forget... the problem is the Intensity (from getDiffuseTerm() )
+		glm::vec3 specularColor = _specularColor;
+
+		if (!_overrideSpecularLight)
+		{
+			specularColor = LitMaterial::_lights[i]->GetColor();
+		}
+
+		glUniform3fv(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].specularColor"), 1, glm::value_ptr(specularColor));
+
+		glUniform3fv(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].lightColor"), 1, glm::value_ptr(LitMaterial::_lights[i]->GetColor()));
+		glUniform3fv(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].ambientLightColor"), 1, glm::value_ptr(LitMaterial::_lights[i]->GetAmbientColor()));
+		glUniform3fv(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].lightPosition"), 1, glm::value_ptr(LitMaterial::_lights[i]->GetPosition()));
+		glUniform3fv(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].lightForward"), 1, glm::value_ptr(LitMaterial::_lights[i]->GetForwardDirection()));
+		glUniform1i(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].lightType"), LitMaterial::_lights[i]->GetType());
+
+		//spotLight properties
+		if (LitMaterial::_lights[i]->GetType() == LightType::SPOT)
+		{
+			glUniform1f(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].coneAngle"), LitMaterial::_lights[i]->GetConeAngle());
+			glUniform1f(_shader->getUniformLocation("Lights[" + std::to_string(i) + "].fallOffAngle"), LitMaterial::_lights[i]->GetFallOffAngle());
+		}
 	}
 
 	//pass in all MVP matrices separately
@@ -88,5 +122,6 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 		_shader->getAttribLocation("normal"),
 		_shader->getAttribLocation("uv")
 	);
+
 
 }
