@@ -84,12 +84,12 @@ void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatr
 	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
 	glUniform1i(_shader->getUniformLocation("lightCount"), LitMaterial::_lightCount);
 
+
+	glm::vec3 specularColor = _specularColor;
+
 	//pass in the light properties
 	for (int i = 0; i < LitMaterial::_lights.size(); i++)
 	{
-		//TODO: in case you really do forget... the problem is the Intensity (from getDiffuseTerm() )
-		glm::vec3 specularColor = _specularColor;
-
 		if (!_overrideSpecularLight)
 		{
 			specularColor = LitMaterial::_lights[i]->GetColor();

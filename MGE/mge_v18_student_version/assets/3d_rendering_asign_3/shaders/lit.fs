@@ -40,7 +40,7 @@ struct Light
  };
  
 //array to store all lights
-uniform Light Lights[2];
+uniform Light Lights[99];
 
 
 //global variables
@@ -75,7 +75,7 @@ void main(void)
 	Cameramatrix = inverse(viewMatrix);
 	CameraPosition = vec3(Cameramatrix[3]);
 	
-	for (int i = 0; i < Lights.length(); i++)
+	for (int i = 0; i < lightCount; i++)
 	{
 		Intensity = 1;
 		
@@ -94,69 +94,6 @@ void main(void)
 	}
 	
 	fragment_color = vec4(color, 1);
-	/**
-	vec3 LightVector;
-	
-	float intensity = 1;
-	
-	switch(lightType)
-	{
-		case 0:  //ambient
-		vec3 ambientTerm = ambientLightColor * diffuseColor;
-		fragment_color = vec4(ambientTerm, 1);
-		return;
-		
-		case 1: //directional
-		LightVector = normalize(lightForward);
-		break;
-		
-		case 2: //point
-		LightVector = position - lightPosition;
-		break;
-		
-		case 3: //spot
-		LightVector = position - lightPosition;
-		vec3 normalizedLight = normalize(LightVector);
-		vec3 forward = normalize(lightForward);
-		
-		float dotProduct = dot(forward, normalizedLight);
-		float angle = acos(dotProduct);
-		float angleDegrees = degrees(angle);
-		
-		if (angleDegrees > fallOffAngle)
-		{
-			intensity -= (angleDegrees - fallOffAngle) / (coneAngle - fallOffAngle);
-		}
-		break;
-	}		
-	
-	float diffuseIntensity = max(dot(-normalize(LightVector), normalize(worldNormal)), 0);
-	
-	float distance = length(LightVector);
-	float squareDistance = distance * distance;
-	float c1 = 1;
-	float c2 = 1;
-	float c3 = 0;
-	float attenuation = (c1 + c2 * distance + c3 * squareDistance);
-	diffuseIntensity /= attenuation;
-	
-	mat4 cameramatrix = inverse(viewMatrix);
-	vec3 cameraPosition = vec3(cameramatrix[3]);
-	vec3 cameraVector = cameraPosition - position;
-	
-	vec3 lightDirection = normalize(LightVector);
-	vec3 reflectedRay = reflect(lightDirection, normalize(worldNormal));
-	
-	float projection = dot(reflectedRay, normalize(cameraVector));
-	float maximum = max(projection, 0);
-	
-	vec3 ambientTerm = ambientLightColor * diffuseColor;
-	vec3 diffuseTerm = diffuseIntensity * lightColor * diffuseColor;
-	vec3 specularTerm = pow(maximum, shininess) * lightColor * specularColor;
-	specularTerm /= attenuation;
-
-	fragment_color = vec4 ((ambientTerm + diffuseTerm + specularTerm) * intensity, 1);
-	/**/
 }
 
 vec3 getAmbientTerm()
