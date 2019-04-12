@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "mge/core/AbstractGame.hpp"
-#include "3d_rendering_asign_3/assignment3.hpp"
+#include "3d_rendering_asign_2/assignment2.hpp"
 
 /**
  * Main entry point for the Micro Engine.
@@ -22,7 +22,7 @@ int main()
 {
     std::cout << "Starting Game" << std::endl;
 
-    AbstractGame* game = new Assignment3();
+	AbstractGame* game = new Assignment2();
     game->initialize();
     game->run();
 

@@ -146,8 +146,8 @@ int main()
 		GLint lightColorIndex = glGetUniformLocation(programID, "lightColor");
 		glUniform4f(lightColorIndex, 1, .75f, 0, 1);
 
-		GLint lightRangeIndex = glGetUniformLocation(programID, "lightRange");
-		glUniform1f(lightRangeIndex, 20);
+		GLint lightSizeIndex = glGetUniformLocation(programID, "lightSize");
+		glUniform1f(lightSizeIndex, 5);
 
 		//make sure data is streamed to the shader for this index
 		glEnableVertexAttribArray(vertexIndex);
