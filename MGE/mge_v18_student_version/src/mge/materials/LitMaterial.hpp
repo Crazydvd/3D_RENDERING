@@ -14,40 +14,42 @@ class ShaderProgram;
  */
 class LitMaterial : public AbstractMaterial
 {
-    public:
-		LitMaterial(glm::vec3 pAmbient = glm::vec3(1, 1, 1), glm::vec3 pDiffuse = glm::vec3(1, 1, 1));
-        virtual ~LitMaterial();
+public:
+	LitMaterial(glm::vec3 pAmbient = glm::vec3(1, 1, 1), glm::vec3 pSpecular = glm::vec3(1, 1, 1));
+	virtual ~LitMaterial();
 
-        virtual void render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix) override;
+	virtual void render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix) override;
 
-        //in rgb values
-        void setDiffuseColor (glm::vec3 pDiffuseColor);
-		void setAmbientColor (glm::vec3 pAmbientColor);
-		void setSpecularColor(glm::vec3 pSpecularColor);
-		void setShininess(int pShininess);
+	//in rgb values
+	void setDiffuseColor(glm::vec3 pDiffuseColor);
+	void setAmbientColor(glm::vec3 pAmbientColor);
+	void setSpecularColor(glm::vec3 pSpecularColor);
+	void setShininess(int pShininess);
 
-		static void AddLight(Light* pLight);
-		static void RemoveLight(Light* pLight);
+	static void AddLight(Light* pLight);
+	static void RemoveLight(Light* pLight);
+	static int GetLightCount();
+	static std::vector<Light*> getLights();
 
-    private:
-        //all the static properties are shared between instances of LitMaterial
-        //note that they are all PRIVATE, we do not expose this static info to the outside world
-        static ShaderProgram* _shader;
-        static void _lazyInitializeShader();
+private:
+	//all the static properties are shared between instances of LitMaterial
+	//note that they are all PRIVATE, we do not expose this static info to the outside world
+	static ShaderProgram* _shader;
+	static void _lazyInitializeShader();
 
-		static std::vector<Light*> _lights;
+	static std::vector<Light*> _lights;
 
-		//keep track of the amount of lights
-		static int _lightCount;
+	//keep track of the amount of lights
+	static int _lightCount;
 
-        //this one is unique per instance of color material
-        glm::vec3 _diffuseColor;
-		glm::vec3 _ambientColor;
-		glm::vec3 _specularColor;
+	//this one is unique per instance of color material
+	glm::vec3 _diffuseColor;
+	glm::vec3 _ambientColor;
+	glm::vec3 _specularColor;
 
-		int _shininess = 4;
+	int _shininess = 4;
 
-		bool _overrideSpecularLight = false;
+	bool _overrideSpecularLight = false;
 };
 
 #endif // LITMATERIAL_HPP

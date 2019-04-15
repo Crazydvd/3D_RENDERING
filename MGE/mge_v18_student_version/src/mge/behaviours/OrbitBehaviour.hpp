@@ -18,6 +18,8 @@ private:
 	glm::vec2 getMousePosition();
 	bool checkMouseButton();
 	bool checkMouseButton(sf::Mouse::Button pButton);
+	bool keyPressed();
+	bool keyPressed(sf::Keyboard::Key pKey);
 
 	bool getMouseButtonDown();
 

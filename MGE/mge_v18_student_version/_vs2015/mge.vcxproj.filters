@@ -26,6 +26,9 @@
     <Filter Include="MGE Source files\assignment_3">
       <UniqueIdentifier>{9f2dc4f7-37fb-430b-857b-78d01556c72f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MGE Source files\assignment_4">
+      <UniqueIdentifier>{dc8ecdd6-a852-4368-a089-a9f630f07c74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\glm.hpp">
@@ -103,6 +106,18 @@
     <ClInclude Include="..\src\mge\behaviours\OrbitBehaviour.hpp">
       <Filter>MGE Source files\mge\behaviours</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\mge\materials\WobbleMaterial.hpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\mge\materials\LitTextureMaterial.hpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3d_rendering_asign_4\assignment4.hpp">
+      <Filter>MGE Source files\assignment_4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3d_rendering_asign_4\config.hpp">
+      <Filter>MGE Source files\assignment_4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -170,6 +185,15 @@
     </ClCompile>
     <ClCompile Include="..\src\mge\behaviours\OrbitBehaviour.cpp">
       <Filter>MGE Source files\mge\behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mge\materials\WobbleMaterial.cpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mge\materials\LitTextureMaterial.cpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3d_rendering_asign_4\assignment4.cpp">
+      <Filter>MGE Source files\assignment_4</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

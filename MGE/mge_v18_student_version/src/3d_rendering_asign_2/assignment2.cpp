@@ -15,6 +15,7 @@
 #include "mge/materials/AbstractMaterial.hpp"
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
+#include "mge/materials/WobbleMaterial.hpp"
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
@@ -36,7 +37,7 @@ Assignment2::Assignment2() :AbstractGame(), _hud(0)
 	std::cout << "Camera" << std::endl << matrix << std::endl;
 
 	matrix = glm::inverse(matrix); //inverse to get the view matrix.
-	
+
 	std::cout << "View" << std::endl << matrix << std::endl;
 
 	//NOTE: you translate in local space, so you translate along the rotated axis.
@@ -65,6 +66,11 @@ void Assignment2::_initializeScene()
 	Mesh* cubeMeshF = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "cube_flat.obj");
 	Mesh* sphereMeshS = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "sphere_smooth.obj");
 
+	Mesh* sphere1 = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "sphere1.obj"); //Doesn't work: vertex normals are not in the file (vn)
+	Mesh* sphere2 = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "sphere2.obj"); //Works: UV is messed up
+	Mesh* sphere3 = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "sphere3.obj"); //Doesn't work: UVs are not in the file (vt)
+	Mesh* sphere4 = Mesh::load(config::ASSIGNMENT2_MODEL_PATH + "sphere4.obj"); //Works: Only half the Faces are rendered
+
 	//MATERIALS
 
 	//create some materials to display the cube, the plane and the light
@@ -87,12 +93,51 @@ void Assignment2::_initializeScene()
 	_world->add(plane);
 
 	//add a spinning sphere
-	GameObject* sphere = new GameObject("sphere", glm::vec3(0, 0, 0));
-	sphere->scale(glm::vec3(2.5, 2.5, 2.5));
-	sphere->setMesh(sphereMeshS);
-	sphere->setMaterial(runicStoneMaterial);
-	sphere->setBehaviour(new RotatingBehaviour());
-	_world->add(sphere);
+	GameObject* sphere;
+	int i = 0;
+	switch (i)
+	{
+	case 0:
+		sphere = new GameObject("sphere", glm::vec3(0, 0, 0));
+		sphere->scale(glm::vec3(2.5, 2.5, 2.5));
+		sphere->setMesh(sphereMeshS);
+		sphere->setMaterial(new WobbleMaterial(Texture::load(config::ASSIGNMENT2_TEXTURE_PATH + "runicfloor.png")));
+		//sphere->setBehaviour(new RotatingBehaviour());
+		_world->add(sphere);
+		break;
+	case 1:
+		sphere = new GameObject("sphere1", glm::vec3(0, 0, 0));
+		sphere->scale(glm::vec3(2.5, 2.5, 2.5));
+		sphere->setMesh(sphere1);
+		sphere->setMaterial(runicStoneMaterial);
+		sphere->setBehaviour(new RotatingBehaviour());
+		_world->add(sphere);
+		break;
+	case 2:
+		sphere = new GameObject("sphere2", glm::vec3(0, 0, 0));
+		sphere->scale(glm::vec3(2.5, 2.5, 2.5));
+		sphere->setMesh(sphere2);
+		sphere->setMaterial(runicStoneMaterial);
+		sphere->setBehaviour(new RotatingBehaviour());
+		_world->add(sphere);
+		break;
+	case 3:
+		sphere = new GameObject("sphere3", glm::vec3(0, 0, 0));
+		sphere->scale(glm::vec3(2.5, 2.5, 2.5));
+		sphere->setMesh(sphere3);
+		sphere->setMaterial(runicStoneMaterial);
+		sphere->setBehaviour(new RotatingBehaviour());
+		_world->add(sphere);
+		break;
+	case 4:
+		sphere = new GameObject("sphere4", glm::vec3(0, 0, 0));
+		sphere->scale(glm::vec3(2.5, 2.5, 2.5));
+		sphere->setMesh(sphere4);
+		sphere->setMaterial(runicStoneMaterial);
+		sphere->setBehaviour(new RotatingBehaviour());
+		_world->add(sphere);
+		break;
+	}
 
 	//add a light. Note that the light does ABSOLUTELY ZIP! NADA ! NOTHING !
 	//It's here as a place holder to get you started.

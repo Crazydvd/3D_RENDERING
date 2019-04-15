@@ -1,11 +1,10 @@
 #include "glm.hpp"
 
-#include "LitMaterial.hpp"
-#include "mge/config.hpp"
+#include "mge/materials/LitMaterial.hpp"
+#include "3d_rendering_asign_3/config.hpp"
 #include "mge/core/GameObject.hpp"
 #include "mge/core/Mesh.hpp"
 #include "mge/core/ShaderProgram.hpp"
-#include "3d_rendering_asign_3/config.hpp"
 
 ShaderProgram* LitMaterial::_shader = NULL;
 int LitMaterial::_lightCount = 0;
@@ -75,20 +74,31 @@ void LitMaterial::RemoveLight(Light* pLight)
 	}
 }
 
+int LitMaterial::GetLightCount()
+{
+	return LitMaterial::_lightCount;
+}
+
+std::vector<Light*> LitMaterial::getLights()
+{
+	return _lights;
+}
+
 
 void LitMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix)
 {
+
 	_shader->use();
 	//set the material color
 	glUniform3fv(_shader->getUniformLocation("diffuseColor"), 1, glm::value_ptr(_diffuseColor));
 	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
 	glUniform1i(_shader->getUniformLocation("lightCount"), LitMaterial::_lightCount);
 
-
 	glm::vec3 specularColor = _specularColor;
 
+	//TODO: change this so you actually use the lights array from World class
 	//pass in the light properties
-	for (int i = 0; i < LitMaterial::_lights.size(); i++)
+	for (size_t i = 0; i < LitMaterial::_lights.size(); i++)
 	{
 		if (!_overrideSpecularLight)
 		{

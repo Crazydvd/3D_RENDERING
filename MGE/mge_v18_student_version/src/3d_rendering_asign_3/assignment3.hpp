@@ -1,5 +1,5 @@
-#ifndef ASSIGNMENT_HPP
-#define ASSIGNMENT_HPP
+#ifndef ASSIGNMENT3_HPP
+#define ASSIGNMENT3_HPP
 
 #include "mge/core/AbstractGame.hpp"
 
@@ -35,4 +35,4 @@ class Assignment3: public AbstractGame
         Assignment3& operator=(const Assignment3&);
 };
 
-#endif // ASSIGNMENT_HPP
+#endif // ASSIGNMENT3_HPP

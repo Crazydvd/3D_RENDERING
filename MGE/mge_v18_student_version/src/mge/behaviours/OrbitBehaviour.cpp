@@ -13,11 +13,9 @@ OrbitBehaviour::~OrbitBehaviour()
 
 void OrbitBehaviour::update(float pStep)
 {
-	//_target->translate(glm::vec3(0.0009, 0, 0));
-
 	reset();
 
-	if (checkMouseButton())
+	if (checkMouseButton() || keyPressed())
 	{
 		if (getMouseButtonDown())
 		{
@@ -25,6 +23,29 @@ void OrbitBehaviour::update(float pStep)
 		}
 
 		_mousePos = getMousePosition();
+
+		if (keyPressed())
+		{
+			_oldPos = glm::vec2(0, 0);
+
+			if (keyPressed(sf::Keyboard::Key::I))
+			{
+				_mousePos = glm::vec2(0, 50);
+			}
+			else if (keyPressed(sf::Keyboard::Key::K))
+			{
+				_mousePos = glm::vec2(0, -50);
+			}
+			else if (keyPressed(sf::Keyboard::Key::J))
+			{
+				_mousePos = glm::vec2(-50, 0);
+			}
+			else if (keyPressed(sf::Keyboard::Key::L))
+			{
+				_mousePos = glm::vec2(50, 0);
+			}
+		}
+
 		rotate();
 
 		_pressed = true;
@@ -59,6 +80,20 @@ glm::vec2 OrbitBehaviour::getMousePosition()
 bool OrbitBehaviour::checkMouseButton()
 {
 	return sf::Mouse::isButtonPressed(sf::Mouse::Left);
+}
+
+bool OrbitBehaviour::keyPressed()
+{
+	return 
+		(sf::Keyboard::isKeyPressed(sf::Keyboard::J) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::L) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::I) ||
+		sf::Keyboard::isKeyPressed(sf::Keyboard::K));
+}
+
+bool OrbitBehaviour::keyPressed(sf::Keyboard::Key pKey)
+{
+	return sf::Keyboard::isKeyPressed(pKey);
 }
 
 bool OrbitBehaviour::checkMouseButton(sf::Mouse::Button pButton)

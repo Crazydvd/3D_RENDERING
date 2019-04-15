@@ -2,6 +2,8 @@
 
 #include "mge/core/AbstractGame.hpp"
 #include "3d_rendering_asign_2/assignment2.hpp"
+#include "3d_rendering_asign_3/assignment3.hpp"
+#include "3d_rendering_asign_4/assignment4.hpp"
 
 /**
  * Main entry point for the Micro Engine.

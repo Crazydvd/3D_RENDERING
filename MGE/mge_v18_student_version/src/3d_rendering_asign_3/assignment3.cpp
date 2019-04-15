@@ -16,9 +16,11 @@
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/LitMaterial.hpp"
+#include "mge/materials/LitTextureMaterial.hpp"
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
+#include "mge/behaviours/OrbitBehaviour.hpp"
 
 #include "mge/util/DebugHud.hpp"
 
@@ -68,6 +70,7 @@ void Assignment3::_initializeScene()
 	AbstractMaterial* brickMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "bricks.jpg"));
 	AbstractMaterial* landMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "land.jpg"));
 	AbstractMaterial* textureMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "RGB.png"));
+	AbstractMaterial* litTexture = new LitTextureMaterial(Texture::load(config::ASSIGNMENT3_TEXTURE_PATH + "runicfloor.png"));
 
 	//SCENE SETUP
 
@@ -96,7 +99,7 @@ void Assignment3::_initializeScene()
 	GameObject* teapot = new GameObject("teapot", glm::vec3(0, 1, 0));
 	teapot->scale(glm::vec3(2.5, 2.5, 2.5));
 	teapot->setMesh(TeapotS);
-	teapot->setMaterial(litMaterial);
+	teapot->setMaterial(litTexture);
 	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(75.0f), glm::vec3(0, 1, 0)));
 	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(-10.0f), glm::vec3(1, 0, 0)));
 	//teapot->setBehaviour (new RotatingBehaviour());
@@ -127,6 +130,7 @@ void Assignment3::_initializeScene()
 	light->setBehaviour(new KeysBehaviour(25,90));
 	_world->add(light);
 
+	//second light
 	Light* light2 = new Light("light2", glm::vec3(0, 1, 0), LightType::SPOT);
 	light2->translate(glm::vec3(3, 0, 4));
 	light2->scale(glm::vec3(0.1f, 0.1f, 0.1f));
@@ -146,6 +150,8 @@ void Assignment3::_initializeScene()
 
 	LitMaterial::AddLight(light);
 	LitMaterial::AddLight(light2);
+
+	camera->setBehaviour(new OrbitBehaviour(5, 180.0f, 5, *teapot));
 }
 
 void Assignment3::_render()
