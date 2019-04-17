@@ -24,6 +24,7 @@ public:
 	void setDiffuseColor(glm::vec3 pDiffuseColor);
 	void setAmbientColor(glm::vec3 pAmbientColor);
 	void setSpecularColor(glm::vec3 pSpecularColor);
+	void setOverrideSpecularColor(bool pOverride);
 	void setShininess(int pShininess);
 
 	static void AddLight(Light* pLight);

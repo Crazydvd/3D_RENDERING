@@ -45,7 +45,13 @@ void LitMaterial::setAmbientColor(glm::vec3 pAmbientColor)
 
 void LitMaterial::setSpecularColor(glm::vec3 pSpecularColor)
 {
-	_specularColor = pSpecularColor;
+	_specularColor = glm::vec3(pSpecularColor);
+	setOverrideSpecularColor(true);
+}
+
+void LitMaterial::setOverrideSpecularColor(bool pOverride)
+{
+	_overrideSpecularLight = pOverride;
 }
 
 void LitMaterial::setShininess(int pShininess)

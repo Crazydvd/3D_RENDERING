@@ -99,7 +99,7 @@ void Assignment3::_initializeScene()
 	GameObject* teapot = new GameObject("teapot", glm::vec3(0, 1, 0));
 	teapot->scale(glm::vec3(2.5, 2.5, 2.5));
 	teapot->setMesh(TeapotS);
-	teapot->setMaterial(litTexture);
+	teapot->setMaterial(litMaterial);
 	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(75.0f), glm::vec3(0, 1, 0)));
 	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(-10.0f), glm::vec3(1, 0, 0)));
 	//teapot->setBehaviour (new RotatingBehaviour());
@@ -131,27 +131,27 @@ void Assignment3::_initializeScene()
 	_world->add(light);
 
 	//second light
-	Light* light2 = new Light("light2", glm::vec3(0, 1, 0), LightType::SPOT);
-	light2->translate(glm::vec3(3, 0, 4));
-	light2->scale(glm::vec3(0.1f, 0.1f, 0.1f));
-	light2->rotate(glm::radians(-135.0f), glm::vec3(0, 1, 0));
-	light2->setMesh(cubeMeshF);
-	light2->setMaterial(lightMaterial);
-	//light2->setBehaviour(new KeysBehaviour(25, 90));
-	_world->add(light2);
+	//Light* light2 = new Light("light2", glm::vec3(0, 1, 0), LightType::SPOT);
+	//light2->translate(glm::vec3(3, 0, 4));
+	//light2->scale(glm::vec3(0.1f, 0.1f, 0.1f));
+	//light2->rotate(glm::radians(-135.0f), glm::vec3(0, 1, 0));
+	//light2->setMesh(cubeMeshF);
+	//light2->setMaterial(lightMaterial);
+	////light2->setBehaviour(new KeysBehaviour(25, 90));
+	//_world->add(light2);
 
-	light->setAmbientContribution(.5f);
+	light->setAmbientContribution(1);
 	light->SetLightIntensity(1);
 	light->SetLightColor(color);
 	
-	light2->setAmbientContribution(.5f);
-	light2->SetLightIntensity(1);
-	light2->SetLightColor(color);
+	//light2->setAmbientContribution(.5f);
+	//light2->SetLightIntensity(1);
+	//light2->SetLightColor(color);
 
 	LitMaterial::AddLight(light);
-	LitMaterial::AddLight(light2);
+	//LitMaterial::AddLight(light2);
 
-	camera->setBehaviour(new OrbitBehaviour(5, 180.0f, 5, *teapot));
+	//camera->setBehaviour(new OrbitBehaviour(5, 180.0f, 5, *teapot));
 }
 
 void Assignment3::_render()
