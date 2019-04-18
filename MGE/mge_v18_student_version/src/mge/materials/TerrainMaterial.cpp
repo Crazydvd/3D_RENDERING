@@ -9,7 +9,7 @@
 #include "mge/core/ShaderProgram.hpp"
 #include "mge/materials/LitTextureMaterial.hpp"
 #include "mge/materials/LitMaterial.hpp"
-#include "3d_rendering_asign_3/config.hpp"
+#include "3d_rendering_asign_4/config.hpp"
 
 ShaderProgram* TerrainMaterial::_shader = NULL;
 
@@ -32,8 +32,8 @@ void TerrainMaterial::_lazyInitializeShader()
 	if (!_shader)
 	{
 		_shader = new ShaderProgram();
-		_shader->addShader(GL_VERTEX_SHADER, config::ASSIGNMENT3_SHADER_PATH + "litTexture.vs");
-		_shader->addShader(GL_FRAGMENT_SHADER, config::ASSIGNMENT3_SHADER_PATH + "litTexture.fs");
+		_shader->addShader(GL_VERTEX_SHADER, config::ASSIGNMENT4_SHADER_PATH + "terrain.vs");
+		_shader->addShader(GL_FRAGMENT_SHADER, config::ASSIGNMENT4_SHADER_PATH + "terrain.fs");
 		_shader->finalize();
 
 		//cache all the uniform and attribute indexes
@@ -62,17 +62,16 @@ void TerrainMaterial::setOverrideSpecularColor(bool pOverride)
 	_overrideSpecularLight = pOverride;
 }
 
+void TerrainMaterial::setMaxTerrainHeight(float pMaxHeight)
+{
+	_maxTerrainHeight = pMaxHeight;
+}
+
 void TerrainMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix)
 {
 	if (!_diffuseTexture) return;
 
 	_shader->use();
-
-	//Print the number of lights in the scene and the position of the first light.
-	//It is not used, but this demo is just meant to show you THAT materials can access the lights in a world
-	//if (pWorld->getLightCount() > 0) {
-	//    std::cout << "TextureMaterial has discovered light is at position:" << pWorld->getLightAt(0)->getLocalPosition() << std::endl;
-	//}
 
 	//setup texture slot 0
 	glActiveTexture(GL_TEXTURE0);
@@ -83,6 +82,7 @@ void TerrainMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModel
 
 	//set the material color
 	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
+	glUniform1f(_shader->getUniformLocation("maxHeight"), _maxTerrainHeight);
 	glUniform1i(_shader->getUniformLocation("lightCount"), LitMaterial::GetLightCount());
 
 	glm::vec3 specularColor = _specularColor;

@@ -54,6 +54,7 @@ void Assignment4::_initializeScene()
 	//each mesh only has to be loaded once, but can be used multiple times:
 	//F is flat shaded, S is smooth shaded (normals aligned or not), check the models folder!
 	Mesh* planeMeshDefault = Mesh::load(config::ASSIGNMENT4_MODEL_PATH + "plane.obj");
+	Mesh* TerrainMesh = Mesh::load(config::ASSIGNMENT4_MODEL_PATH + "plane_8192.obj");
 	Mesh* cubeMeshF = Mesh::load(config::ASSIGNMENT4_MODEL_PATH + "cube_flat.obj");
 	Mesh* sphereMeshS = Mesh::load(config::ASSIGNMENT4_MODEL_PATH + "sphere_smooth.obj");
 	Mesh* SuzannaS = Mesh::load(config::ASSIGNMENT4_MODEL_PATH + "suzanna_smooth.obj");
@@ -84,7 +85,7 @@ void Assignment4::_initializeScene()
 	//add the floor
 	GameObject* plane = new GameObject("plane", glm::vec3(0, 0, 0));
 	plane->scale(glm::vec3(5, 5, 5));
-	plane->setMesh(planeMeshDefault);
+	plane->setMesh(TerrainMesh);
 	plane->setMaterial(terrain);
 	_world->add(plane);
 

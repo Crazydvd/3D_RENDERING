@@ -23,6 +23,8 @@ public:
 	void setSpecularColor(glm::vec3 pSpecularColor);
 	void setOverrideSpecularColor(bool pOverride);
 
+	void setMaxTerrainHeight(float pMaxHeight);
+
 protected:
 private:
 	static ShaderProgram* _shader;
@@ -42,13 +44,13 @@ private:
 	glm::vec3 _ambientColor;
 	glm::vec3 _specularColor;
 
-	int _shininess = 4;
+	int _shininess = 1;
 
 	bool _overrideSpecularLight = false;
+	float _maxTerrainHeight = 1;
 
 	TerrainMaterial(const TerrainMaterial&);
 	TerrainMaterial& operator=(const TerrainMaterial&);
-
 };
 
 #endif // TEXTUREMATERIAL_HPP
