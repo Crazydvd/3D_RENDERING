@@ -49,16 +49,16 @@ void OrbitBehaviour::update(float pStep)
 
 		if (keyPressed(sf::Keyboard::Key::Y) || checkMouseButton(sf::Mouse::Button::XButton2))
 		{
-			_oldDistance = _distance;
 			_distance -= 0.1f;
 		}
 		else if (keyPressed(sf::Keyboard::Key::H) || checkMouseButton(sf::Mouse::Button::XButton1))
 		{
-			_oldDistance = _distance;
 			_distance += 0.1f;
 		}
 
 		rotate();
+
+		_oldDistance = _distance;
 
 		_pressed = true;
 		return;

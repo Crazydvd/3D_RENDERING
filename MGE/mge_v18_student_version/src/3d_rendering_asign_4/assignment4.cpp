@@ -70,7 +70,8 @@ void Assignment4::_initializeScene()
 	AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "runicfloor.png"));
 	AbstractMaterial* brickMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "bricks.jpg"));
 	AbstractMaterial* landMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "land.jpg"));
-	AbstractMaterial* litTexture = new LitTextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse4.jpg"));
+	AbstractMaterial* litTexture = new TerrainMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse4.jpg"));
+	AbstractMaterial* terrain = new TerrainMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "heightmap.png"));
 
 	//SCENE SETUP
 
@@ -84,7 +85,7 @@ void Assignment4::_initializeScene()
 	GameObject* plane = new GameObject("plane", glm::vec3(0, 0, 0));
 	plane->scale(glm::vec3(5, 5, 5));
 	plane->setMesh(planeMeshDefault);
-	plane->setMaterial(new LitMaterial(glm::vec3(0.5, 0, 0), glm::vec3(0.5, 0, 0)));
+	plane->setMaterial(terrain);
 	_world->add(plane);
 
 	//add a light. Note that the light does ABSOLUTELY ZIP! NADA ! NOTHING !
@@ -118,13 +119,14 @@ void Assignment4::_initializeScene()
 	light->SetLightColor(color);
 
 	light2->setAmbientContribution(1);
-	light2->SetLightIntensity(0.2f);
+	light2->SetLightIntensity(1);
 	light2->SetLightColor(glm::vec3(1, 1, 1));
 
 	LitMaterial::AddLight(light);
 	LitMaterial::AddLight(light2);
 
 	camera->setBehaviour(new OrbitBehaviour(2, 90.0f, 5, *plane));
+	glClearColor(0.2f, 0.9f, 1, 1);
 }
 
 void Assignment4::_render()
