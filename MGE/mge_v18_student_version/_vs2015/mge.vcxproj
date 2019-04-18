@@ -191,6 +191,7 @@
     <ClInclude Include="..\src\mge\materials\ColorMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\LitMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\LitTextureMaterial.hpp" />
+    <ClInclude Include="..\src\mge\materials\TerrainMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\TextureMaterial.hpp" />
     <ClInclude Include="..\src\mge\materials\WobbleMaterial.hpp" />
     <ClInclude Include="..\src\mge\MGEDemo.hpp" />
@@ -218,6 +219,7 @@
     <ClCompile Include="..\src\mge\materials\ColorMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\LitMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\LitTextureMaterial.cpp" />
+    <ClCompile Include="..\src\mge\materials\TerrainMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\TextureMaterial.cpp" />
     <ClCompile Include="..\src\mge\materials\WobbleMaterial.cpp" />
     <ClCompile Include="..\src\mge\MGEDemo.cpp" />

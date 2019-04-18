@@ -24,7 +24,7 @@ int main()
 {
     std::cout << "Starting Game" << std::endl;
 
-	AbstractGame* game = new Assignment3();
+	AbstractGame* game = new Assignment4();
     game->initialize();
     game->run();
 

@@ -118,6 +118,9 @@
     <ClInclude Include="..\src\3d_rendering_asign_4\config.hpp">
       <Filter>MGE Source files\assignment_4</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\mge\materials\TerrainMaterial.hpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="..\src\3d_rendering_asign_4\assignment4.cpp">
       <Filter>MGE Source files\assignment_4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mge\materials\TerrainMaterial.cpp">
+      <Filter>MGE Source files\mge\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

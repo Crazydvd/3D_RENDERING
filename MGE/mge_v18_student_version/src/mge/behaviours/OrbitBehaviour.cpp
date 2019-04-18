@@ -1,7 +1,7 @@
 #include "mge/behaviours/OrbitBehaviour.hpp"
 #include "mge/core/GameObject.hpp"
 
-OrbitBehaviour::OrbitBehaviour(float pDistance, float pMaxTiltAngle, float pRotationSpeed, GameObject & pTarget) : AbstractBehaviour(), _distance(pDistance), _maxTiltAngle(glm::radians(pMaxTiltAngle)), _rotationSpeed(pRotationSpeed), _target(&pTarget)
+OrbitBehaviour::OrbitBehaviour(float pDistance, float pMaxTiltAngle, float pRotationSpeed, GameObject & pTarget) : AbstractBehaviour(), _distance(pDistance), _oldDistance(pDistance), _maxTiltAngle(glm::radians(pMaxTiltAngle)), _rotationSpeed(pRotationSpeed), _target(&pTarget)
 {
 	_first = true;
 }
@@ -27,6 +27,7 @@ void OrbitBehaviour::update(float pStep)
 		if (keyPressed())
 		{
 			_oldPos = glm::vec2(0, 0);
+			_mousePos = glm::vec2(0, 0);
 
 			if (keyPressed(sf::Keyboard::Key::I))
 			{
@@ -44,6 +45,17 @@ void OrbitBehaviour::update(float pStep)
 			{
 				_mousePos = glm::vec2(50, 0);
 			}
+		}
+
+		if (keyPressed(sf::Keyboard::Key::Y) || checkMouseButton(sf::Mouse::Button::XButton2))
+		{
+			_oldDistance = _distance;
+			_distance -= 0.1f;
+		}
+		else if (keyPressed(sf::Keyboard::Key::H) || checkMouseButton(sf::Mouse::Button::XButton1))
+		{
+			_oldDistance = _distance;
+			_distance += 0.1f;
 		}
 
 		rotate();
@@ -79,16 +91,20 @@ glm::vec2 OrbitBehaviour::getMousePosition()
 
 bool OrbitBehaviour::checkMouseButton()
 {
-	return sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	return sf::Mouse::isButtonPressed(sf::Mouse::Left) ||
+		checkMouseButton(sf::Mouse::XButton1) ||
+		checkMouseButton(sf::Mouse::XButton2);
 }
 
 bool OrbitBehaviour::keyPressed()
 {
-	return 
+	return
 		(sf::Keyboard::isKeyPressed(sf::Keyboard::J) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::L) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::I) ||
-		sf::Keyboard::isKeyPressed(sf::Keyboard::K));
+			sf::Keyboard::isKeyPressed(sf::Keyboard::L) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::I) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::K) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Y) ||
+			sf::Keyboard::isKeyPressed(sf::Keyboard::H));
 }
 
 bool OrbitBehaviour::keyPressed(sf::Keyboard::Key pKey)
@@ -113,11 +129,14 @@ bool OrbitBehaviour::getMouseButtonDown()
 
 void OrbitBehaviour::rotate()
 {
-	_owner->translate(glm::vec3(0, 0, -_distance));
+	_owner->translate(glm::vec3(0, 0, -_oldDistance));
 
 	_delta = _mousePos - _oldPos;
 	_owner->rotate(rotateX(10) * glm::radians(0.5f * _rotationSpeed), glm::vec3(1, 0, 0));
-	_owner->rotate(rotateY(10) * glm::radians(0.5f * _rotationSpeed), glm::vec3(0, 1, 0));
+	glm::mat4 Identity(1);
+	Identity = glm::rotate(Identity, rotateY(10) * glm::radians(0.5f * _rotationSpeed), glm::vec3(0, 1, 0));
+	_owner->setTransform(Identity * _owner->getTransform());
+	//_owner->rotate(rotateY(10) * glm::radians(0.5f * _rotationSpeed), glm::vec3(0, 1, 0));
 
 	_owner->translate(glm::vec3(0, 0, _distance));
 }

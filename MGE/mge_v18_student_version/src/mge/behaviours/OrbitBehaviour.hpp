@@ -27,6 +27,7 @@ private:
 	int rotateX(float pDeadzone);
 	int rotateY(float pDeadzone);
 
+	float _oldDistance = 0;
 	float _distance = 0;
 	float _maxTiltAngle = 0;
 	float _rotationSpeed = 1;

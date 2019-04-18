@@ -17,6 +17,7 @@
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/LitMaterial.hpp"
 #include "mge/materials/LitTextureMaterial.hpp"
+#include "mge/materials/TerrainMaterial.hpp"
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
@@ -64,7 +65,7 @@ void Assignment4::_initializeScene()
 	//MATERIALS
 
 	//create some materials to display the cube, the plane and the light
-	AbstractMaterial* lightMaterial = new ColorMaterial(glm::vec3(1, 1, 0));
+	AbstractMaterial* lightMaterial;
 	AbstractMaterial* litMaterial = new LitMaterial(glm::vec3(0, 0.5f, 0), glm::vec3(1, 1, 1));
 	AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "runicfloor.png"));
 	AbstractMaterial* brickMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "bricks.jpg"));
@@ -83,34 +84,8 @@ void Assignment4::_initializeScene()
 	GameObject* plane = new GameObject("plane", glm::vec3(0, 0, 0));
 	plane->scale(glm::vec3(5, 5, 5));
 	plane->setMesh(planeMeshDefault);
-	plane->setMaterial(new LitMaterial(glm::vec3(0.5,0,0), glm::vec3(0.5,0,0)));
+	plane->setMaterial(new LitMaterial(glm::vec3(0.5, 0, 0), glm::vec3(0.5, 0, 0)));
 	_world->add(plane);
-
-	////add a spinning sphere
-	//GameObject* sphere = new GameObject ("sphere", glm::vec3(0,0,0));
-	//sphere->scale(glm::vec3(2.5,2.5,2.5));
-	//sphere->setMesh (sphereMeshS);
-	//sphere->setMaterial(runicStoneMaterial);
-	//sphere->setBehaviour (new RotatingBehaviour());
-	//_world->add(sphere);
-
-	//add a teapot
-	GameObject* teapot = new GameObject("teapot", glm::vec3(0, 1, 0));
-	teapot->scale(glm::vec3(2.5, 2.5, 2.5));
-	teapot->setMesh(TeapotS);
-	teapot->setMaterial(litTexture);
-	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(75.0f), glm::vec3(0, 1, 0)));
-	teapot->setTransform(glm::rotate(teapot->getWorldTransform(), glm::radians(-10.0f), glm::vec3(1, 0, 0)));
-	//teapot->setBehaviour (new RotatingBehaviour());
-	_world->add(teapot);
-
-	////add a testObj
-	//GameObject* testObj = new GameObject("testObj", glm::vec3(0, 1, 0));
-	//testObj->scale(glm::vec3(.5, .5, .5));
-	//testObj->setMesh(PliersUp);
-	//testObj->setMaterial(litMaterial);
-	////testObj->setBehaviour(new RotatingBehaviour());
-	//_world->add(testObj);
 
 	//add a light. Note that the light does ABSOLUTELY ZIP! NADA ! NOTHING !
 	//It's here as a place holder to get you started.
@@ -120,13 +95,13 @@ void Assignment4::_initializeScene()
 	glm::vec3 color = glm::vec3(1, 1, 1);
 	lightMaterial = new ColorMaterial(color);
 
-	Light* light = new Light("light", glm::vec3(0, 1, 0), LightType::SPOT);
+	Light* light = new Light("light", glm::vec3(0, 1, 0), LightType::POINT);
 	light->translate(glm::vec3(-3, 0, 4));
 	light->scale(glm::vec3(0.1f, 0.1f, 0.1f));
 	light->rotate(glm::radians(135.0f), glm::vec3(0, 1, 0));
 	light->setMesh(cubeMeshF);
 	light->setMaterial(lightMaterial);
-	light->setBehaviour(new KeysBehaviour(25,90));
+	light->setBehaviour(new KeysBehaviour(25, 90));
 	_world->add(light);
 
 	//second light
@@ -136,21 +111,20 @@ void Assignment4::_initializeScene()
 	light2->rotate(glm::radians(-135.0f), glm::vec3(0, 1, 0));
 	//light2->setMesh(cubeMeshF);
 	light2->setMaterial(lightMaterial);
-	//light2->setBehaviour(new KeysBehaviour(25, 90));
 	_world->add(light2);
 
 	light->setAmbientContribution(0);
 	light->SetLightIntensity(1);
 	light->SetLightColor(color);
-	
+
 	light2->setAmbientContribution(1);
 	light2->SetLightIntensity(0.2f);
-	light2->SetLightColor(color);
+	light2->SetLightColor(glm::vec3(1, 1, 1));
 
 	LitMaterial::AddLight(light);
 	LitMaterial::AddLight(light2);
 
-	camera->setBehaviour(new OrbitBehaviour(5, 180.0f, 5, *teapot));
+	camera->setBehaviour(new OrbitBehaviour(2, 90.0f, 5, *plane));
 }
 
 void Assignment4::_render()
