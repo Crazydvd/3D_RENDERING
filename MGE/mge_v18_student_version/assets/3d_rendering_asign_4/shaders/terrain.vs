@@ -1,7 +1,8 @@
 //DIFFUSE TEXTURE VERTEX SHADER
 #version 330 // for glsl version (12 is for older versions , say opengl 2.1
 
-uniform sampler2D diffuseTexture;
+uniform sampler2D heightMapTexture;
+
 uniform float maxHeight;
 
 uniform	mat4 	projectionMatrix;
@@ -20,11 +21,11 @@ void main( void )
 {
 	texCoord = uv;
 	
-	vec3 frag_color = vec3(texture(diffuseTexture, texCoord));
+	vec3 frag_color = vec3(texture(heightMapTexture, texCoord));
 	float value = frag_color.r;
-	value -= 0.5f; //subtract half of 1 (max value) so we can go down as well
+	//value -= 0.5f; //subtract half of 1 (max value) so we can go down as well
 	
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertex + vec3(0, maxHeight * 2, 0) * value, 1.0f);
-	position = vec3(modelMatrix * vec4(vertex + vec3(0, maxHeight * 2, 0) * value, 1));
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertex + vec3(0, maxHeight, 0) * value, 1.0f);
+	position = vec3(modelMatrix * vec4(vertex + vec3(0, maxHeight, 0) * value, 1));
 	worldNormal = vec3(modelMatrix * vec4(normal, 0));
 }

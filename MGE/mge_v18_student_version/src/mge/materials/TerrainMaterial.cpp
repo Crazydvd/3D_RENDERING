@@ -14,13 +14,19 @@
 ShaderProgram* TerrainMaterial::_shader = NULL;
 
 GLint TerrainMaterial::_uMVPMatrix = 0;
-GLint TerrainMaterial::_uDiffuseTexture = 0;
+GLint TerrainMaterial::_uSplatMap = 0;
+GLint TerrainMaterial::_uHeightMapTexture = 0;
+
+GLint TerrainMaterial::_uDiffuse1 = 0;
+GLint TerrainMaterial::_uDiffuse2 = 0;
+GLint TerrainMaterial::_uDiffuse3 = 0;
+GLint TerrainMaterial::_uDiffuse4 = 0;
 
 GLint TerrainMaterial::_aVertex = 0;
 GLint TerrainMaterial::_aNormal = 0;
 GLint TerrainMaterial::_aUV = 0;
 
-TerrainMaterial::TerrainMaterial(Texture * pDiffuseTexture, glm::vec3 pSpecularColor) :_diffuseTexture(pDiffuseTexture), _specularColor(pSpecularColor)
+TerrainMaterial::TerrainMaterial(Texture* pSplatMap, Texture* pHeightMapTexture, Texture* pDiffuse1, Texture* pDiffuse2, Texture* pDiffuse3, Texture* pDiffuse4, glm::vec3 pSpecularColor) : _splatMap(pSplatMap), _heightMapTexture(pHeightMapTexture), _diffuse1(pDiffuse1), _diffuse2(pDiffuse2), _diffuse3(pDiffuse3), _diffuse4(pDiffuse4), _specularColor(pSpecularColor)
 {
 	_lazyInitializeShader();
 }
@@ -38,7 +44,12 @@ void TerrainMaterial::_lazyInitializeShader()
 
 		//cache all the uniform and attribute indexes
 		_uMVPMatrix = _shader->getUniformLocation("mvpMatrix");
-		_uDiffuseTexture = _shader->getUniformLocation("diffuseTexture");
+		_uSplatMap = _shader->getUniformLocation("splatMap");
+		_uHeightMapTexture = _shader->getUniformLocation("heightMapTexture");
+		_uDiffuse1 = _shader->getUniformLocation("diffuse1");
+		_uDiffuse2 = _shader->getUniformLocation("diffuse2");
+		_uDiffuse3 = _shader->getUniformLocation("diffuse3");
+		_uDiffuse4 = _shader->getUniformLocation("diffuse4");
 
 		_aVertex = _shader->getAttribLocation("vertex");
 		_aNormal = _shader->getAttribLocation("normal");
@@ -46,9 +57,14 @@ void TerrainMaterial::_lazyInitializeShader()
 	}
 }
 
-void TerrainMaterial::setDiffuseTexture(Texture* pDiffuseTexture)
+void TerrainMaterial::setSplatTexture(Texture* pDiffuseTexture)
 {
-	_diffuseTexture = pDiffuseTexture;
+	_splatMap = pDiffuseTexture;
+}
+
+void TerrainMaterial::setHeightMapTexture(Texture* pHeightMapTexture)
+{
+	_heightMapTexture = pHeightMapTexture;
 }
 
 void TerrainMaterial::setSpecularColor(glm::vec3 pSpecularColor)
@@ -69,21 +85,60 @@ void TerrainMaterial::setMaxTerrainHeight(float pMaxHeight)
 
 void TerrainMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix)
 {
-	if (!_diffuseTexture) return;
+	if (!_splatMap) return;
 
 	_shader->use();
 
 	//setup texture slot 0
 	glActiveTexture(GL_TEXTURE0);
 	//bind the texture to the current active slot
-	glBindTexture(GL_TEXTURE_2D, _diffuseTexture->getId());
-	//tell the shader the texture slot for the diffuse texture is slot 0
-	glUniform1i(_uDiffuseTexture, 0);
+	glBindTexture(GL_TEXTURE_2D, _splatMap->getId());
+	//tell the shader the texture slot for the Splatmap texture is slot 0
+	glUniform1i(_uSplatMap, 0);
+
+	//setup texture slot 1
+	glActiveTexture(GL_TEXTURE1);
+	//bind the texture to the current active slot
+	glBindTexture(GL_TEXTURE_2D, _heightMapTexture->getId());
+	//tell the shader the texture slot for the Heightmap texture is slot 1
+	glUniform1i(_uHeightMapTexture, 1);
+
+	//setup texture slot 2
+	glActiveTexture(GL_TEXTURE2);
+	//bind the texture to the current active slot
+	glBindTexture(GL_TEXTURE_2D, _diffuse1->getId());
+	//tell the shader the texture slot for the diffuse1 texture is slot 2
+	glUniform1i(_uDiffuse1, 2);
+
+	//setup texture slot 3
+	glActiveTexture(GL_TEXTURE3);
+	//bind the texture to the current active slot
+	glBindTexture(GL_TEXTURE_2D, _diffuse2->getId());
+	//tell the shader the texture slot for the diffuse2 texture is slot 3
+	glUniform1i(_uDiffuse2, 3);
+
+	//setup texture slot 4
+	glActiveTexture(GL_TEXTURE4);
+	//bind the texture to the current active slot
+	glBindTexture(GL_TEXTURE_2D, _diffuse3->getId());
+	//tell the shader the texture slot for the diffuse3 texture is slot 4
+	glUniform1i(_uDiffuse3, 4);
+
+	//setup texture slot 5
+	glActiveTexture(GL_TEXTURE5);
+	//bind the texture to the current active slot
+	glBindTexture(GL_TEXTURE_2D, _diffuse4->getId());
+	//tell the shader the texture slot for the diffuse4 texture is slot 5
+	glUniform1i(_uDiffuse4, 5);
+
 
 	//set the material color
 	glUniform1i(_shader->getUniformLocation("shininess"), _shininess);
 	glUniform1f(_shader->getUniformLocation("maxHeight"), _maxTerrainHeight);
 	glUniform1i(_shader->getUniformLocation("lightCount"), LitMaterial::GetLightCount());
+
+	//pass in the time to the shader
+	glUniform1f(_shader->getUniformLocation("time"), _clock.getElapsedTime().asSeconds());
 
 	glm::vec3 specularColor = _specularColor;
 

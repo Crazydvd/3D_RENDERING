@@ -71,8 +71,9 @@ void Assignment4::_initializeScene()
 	AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "runicfloor.png"));
 	AbstractMaterial* brickMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "bricks.jpg"));
 	AbstractMaterial* landMaterial = new TextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "land.jpg"));
-	AbstractMaterial* litTexture = new TerrainMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse4.jpg"));
-	AbstractMaterial* terrain = new TerrainMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "heightmap.png"));
+	AbstractMaterial* litTexture = new LitTextureMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse4.jpg"));
+	AbstractMaterial* terrain = new TerrainMaterial(Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "splatmap.png"), Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "heightmapManon.png"),
+		Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse1.jpg"), Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "water.jpg"), Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse3.jpg"), Texture::load(config::ASSIGNMENT4_TEXTURE_PATH + "diffuse4.jpg"));
 
 	//SCENE SETUP
 

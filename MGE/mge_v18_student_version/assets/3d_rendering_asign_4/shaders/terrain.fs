@@ -1,11 +1,19 @@
 //DIFFUSE TEXTURE FRAGMENT SHADER
 #version 330 // for glsl version (12 is for older versions , say opengl 2.1
 
-uniform sampler2D diffuseTexture;
+uniform sampler2D splatMap;
+
+uniform sampler2D diffuse1;
+uniform sampler2D diffuse2;
+uniform sampler2D diffuse3;
+uniform sampler2D diffuse4;
+
 uniform mat4 viewMatrix;
 
 uniform int lightCount;
 uniform int shininess;
+
+uniform float time;
 
 in vec3 worldNormal;
 in vec3 position;
@@ -65,7 +73,11 @@ vec3 calculateColor();
 void main(void) 
 {
 	vec3 color = vec3(0, 0, 0);
-	diffuseColor = vec3(texture(diffuseTexture,texCoord));
+	vec4 splatPixel = vec4(texture(splatMap, texCoord));
+	
+	float mTime = time / 30;
+	vec2 offset = vec2(mTime, sin(mTime));
+	diffuseColor = splatPixel.r * vec3(texture(diffuse1, texCoord)) + splatPixel.g * vec3(texture(diffuse2, texCoord + offset)) + splatPixel.b * vec3(texture(diffuse3, texCoord)) + splatPixel.a * vec3(texture(diffuse4, texCoord));
 	Cameramatrix = inverse(viewMatrix);
 	CameraPosition = vec3(Cameramatrix[3]);
 	
